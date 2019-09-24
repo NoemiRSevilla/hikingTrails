@@ -1,0 +1,30 @@
+<script>
+  var map, infoWindow, service;
+  function initMap() {
+  //map..
+    map = new google.maps.Map(document.getElementById('dvMap'), {
+        center: {
+            lat: @ViewBag.Lati,
+            lng: @ViewBag.Long
+        },
+        zoom: 15
+    });
+    infoWindow = new google.maps.InfoWindow;        //marker..
+    var marker = new google.maps.Marker({
+        position: {
+            lat: @ViewBag.Lati,
+            lng: @ViewBag.Long
+        },
+        map: map,
+        draggable: true
+    });
+  //dragend event of marker
+    google.maps.event.addListener(marker, 'dragend', function () {
+        var Lats = marker.getPosition().lat();
+        var Longs = marker.getPosition().lng();
+
+        $('#Lat').val(Lats);
+        $('#Long').val(Longs);
+
+    });
+}

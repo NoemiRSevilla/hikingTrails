@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace hiking.Models
 {
 
-    public class Trails
+    public class Trail
     {
         [Key]
         public int id {get;set;}
