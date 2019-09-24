@@ -1,0 +1,24 @@
+@using hiking.Models
+@model LoginUser
+
+<body>
+    <link rel="stylesheet" href="~/css/site.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="col">
+    <h4 class="left">Login</h4>
+    <form action="submitlogin" method="post">
+        <div class="form-group">
+            <span class="red" asp-validation-for="LoginEmail"></span>
+            <label asp-for="LoginEmail">Email:</label>
+            <input asp-for="LoginEmail" class="form-control">
+        </div>
+        <div class="form-group">
+            <span class="red" asp-validation-for="LoginPassword"></span>
+            <label asp-for="LoginPassword">Password:</label>
+            <input asp-for="LoginPassword" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Login!</button>
+    </form>
+</div>
+</body>
