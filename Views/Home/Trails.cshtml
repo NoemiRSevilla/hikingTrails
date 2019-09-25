@@ -5,8 +5,8 @@
 <body>
     <input id="pac-input" class="controls form-control col-6" type="text" placeholder="Search Box">
     <div id="map" ></div>
-    <div id="hikingresults" ></div>
-
+    <div id="hikingresults" >
+    </div>
     <script>
       // This example adds a search box to a map, using the Google Place Autocomplete
       // feature. People can enter geographical searches. The search box will return a
@@ -25,7 +25,6 @@
 
         // Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');
-        console.log(input)
         var searchBox = new google.maps.places.SearchBox(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -77,6 +76,29 @@
             console.log(place.geometry.location.lat());
             var latitude = place.geometry.location.lat();
             var longitude = place.geometry.location.lng();
+            
+            async function apiGetAll () {
+              try {
+                var resp = await fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&key=200600399-a9a827ab2b79c5ff46c5d9c3ff28936b')
+                var data = await resp.json();
+                return data;
+              }
+              catch (error){
+                console.log(error);
+              }
+            }
+            console.log(apiGetAll());
+
+            var resp;
+            resp = true;
+            promise1 = new Promise(function(resolve, reject) {
+              if (keepsHisWord) {
+                resolve("The man likes to keep his word");
+              } else {
+                reject("The man doesnt want to keep his word");
+              }
+            });
+            console.log(promise1);
 
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
@@ -90,10 +112,9 @@
       }
 
     </script>
-    <script src="https://www.hikingproject.com/data/get-trails?lat=latitude&lon=longtitude&key=200600399-a9a827ab2b79c5ff46c5d9c3ff28936b">
-    </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFbGNmXKLwZV6NqhluyzrGQT99zeUCg6w
+&libraries=places&callback=initAutocomplete" async defer>
     </script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">

@@ -47,7 +47,8 @@
 }
 
 #map {
-    height: 50%;
+    height: 100%;
+    width: 70%
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
@@ -124,4 +125,10 @@ html, body {
 }
 #target {
     width: 345px;
+}
+
+#hikingresults {
+    width: 25%;
+    height: 100%;
+    color: black;
 }
