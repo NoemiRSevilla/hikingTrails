@@ -7,6 +7,17 @@
     <div id="map" ></div>
     <div id="hikingresults" >
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js">
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+
     <script>
       // This example adds a search box to a map, using the Google Place Autocomplete
       // feature. People can enter geographical searches. The search box will return a
@@ -79,16 +90,26 @@
             
             async function apiGetAll () {
               try {
-                var resp = await fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&key=200600399-a9a827ab2b79c5ff46c5d9c3ff28936b')
+                var resp = await fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&key=HIKING_PROJECT_API')
                 var data = await resp.json();
-                return data;
+                var info = data.trails
+                for (var x = 0; x < info.length; x++)
+                {
+
+                  $("#hikingresults").append(data.trails[x].id)
+                  $("#hikingresults").append(data.trails[x].name)
+                  $("#hikingresults").append(data.trails[x].type)
+                  $("#hikingresults").append(data.trails[x].summary)
+                }
+                  return info;
               }
               catch (error){
                 console.log(error);
               }
             }
-            console.log(apiGetAll());
 
+            apiGetAll();
+            
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
               bounds.union(place.geometry.viewport);
@@ -102,12 +123,11 @@
 
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFbGNmXKLwZV6NqhluyzrGQT99zeUCg6w
+    <script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_API_KEY
 &libraries=places&callback=initAutocomplete" async defer>
     </script>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-    </script>
+
 
     <script src="~/js/script.js">
     </script>
