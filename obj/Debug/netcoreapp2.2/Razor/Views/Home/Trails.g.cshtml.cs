@@ -163,7 +163,7 @@ using hiking;
     <script src=""https://www.hikingproject.com/data/get-trails?lat=latitude&lon=longtitude&key=200600399-a9a827ab2b79c5ff46c5d9c3ff28936b"">
     </script>
 
-    <script src=""https://maps.googleapis.com/maps/api/js?key=AIzaSyDFbGNmXKLwZV6NqhluyzrGQT99zeUCg6w&libraries=places&callback=initAutocomplete"" async defer>
+    <script src=""https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete"" async defer>
     </script>
     
     <script src=""https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"">
