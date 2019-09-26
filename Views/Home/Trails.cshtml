@@ -1,12 +1,28 @@
 @using hiking
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hiking Trails</title>
+
 <link rel="stylesheet" href="~/css/site.css"/>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+</head>
+  
 <body>
+    <form action="/range">
+      Max Distance: <input type="range" name="distance" min="0" max="40">
+      <input type="submit">
+    </form>
+
     <input id="pac-input" class="controls form-control col-6" type="text" placeholder="Search Box">
     <div id="map" ></div>
     <div id="hikingresults" class="container overflow-auto pad">
     </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js">
     </script>
@@ -115,7 +131,7 @@
                     icon: data.trails[x].imgSqSmall
                   })),
                   $("#hikingresults").append(
-                    '<div class="card-group">'
+                    '<div class="card-group border">'
                   )
                     $("#hikingresults").append(
                     '<div class="card-group">'
@@ -132,6 +148,24 @@
                         $("#hikingresults").append(
                           '<p class="card-text">' + data.trails[x].summary + '</p>'
                         )
+                      if(data.trails[x].difficulty == "green")
+                      {
+                        $("#hikingresults").append(
+                          '<div class="container green"><span class="diffText">Difficulty Rating: Easy</span></div></div>'
+                        )
+                      }
+                      else if(data.trails[x].difficulty == "greenBlue")
+                      {
+                        $("#hikingresults").append(
+                          '<div class="container greenBlue"><span class="diffText">Difficulty Rating: Intermediate </span></div></div>'
+                        )
+                      }
+                      else
+                      {
+                        $("#hikingresults").append(
+                          '<div class="container black"><span class="diffText">Difficulty Rating: Difficult </span></div></div>'
+                        )
+                      }
                       $("#hikingresults").append(
                         '</div>'
                       )
@@ -180,3 +214,4 @@
     <script src="~/js/script.js">
     </script>
 </body>
+</html>

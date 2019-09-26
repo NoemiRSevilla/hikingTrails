@@ -48,7 +48,7 @@
 
 #map {
     height: 100%;
-    width: 70%;
+    width: 65%;
     display: inline-block
 }
 /* Optional: Makes the sample page fill the window. */
@@ -129,7 +129,7 @@ html, body {
 }
 
 #hikingresults {
-    width: 25%;
+    width: 33%;
     height: 100%;
     color: black;
     display: inline-block;
@@ -139,3 +139,48 @@ html, body {
 {
     padding: 1%;
 }
+
+.blue
+{
+    height: 3%;
+    width: 100%;
+    background-color: blue;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: white;
+    margin: auto;
+}
+
+.diffText{
+    color: white;
+    margin: auto;
+}
+
+.difficulty
+{
+    color: red;
+}
+
+.greenBlue
+{
+    background-color: rgb(13,152,186);
+}
+
+.green
+{
+    background-color: green;
+}
+
+.black
+{
+    background-color: black
+}
+
+.border
+{
+    border: 2px solid #202020;
+    -webkit-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
+}
+

@@ -16,7 +16,7 @@ namespace hiking.Models
         public string difficulty {get;set;}
         public float stars {get;set;}
         public int starVotes {get;set;}
-        public string location {get;set;}
+        public string location {get;set;} 
         public string url {get;set;}
         public int length {get;set;}
         public int ascent {get;set;}

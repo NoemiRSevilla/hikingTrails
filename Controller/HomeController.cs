@@ -123,10 +123,10 @@ namespace HomeController.Controllers
             
             return View();
         }
-        [HttpPost("search")]
-        public IActionResult Query()
+        [HttpPost("range")]
+        public IActionResult Range(Trail trailMax)
         {
-            return RedirectToAction();
+            return RedirectToAction("Trails");
         }
     }
 }
