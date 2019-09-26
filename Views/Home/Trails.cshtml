@@ -29,9 +29,9 @@
 
       function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
+          center: {lat: 41.886008, lng: -87.6235219},
           zoom: 13,
-          mapTypeId: 'roadmap'
+          mapTypeId: 'satellite'
         });
 
         // Create the search box and link it to the UI element.
@@ -60,6 +60,8 @@
           });
           markers = [];
 
+          
+
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
@@ -75,7 +77,6 @@
               scaledSize: new google.maps.Size(25, 25)
             };
 
-            // Create a marker for each place.
             markers.push(new google.maps.Marker({
               map: map,
               icon: icon,
@@ -95,7 +96,17 @@
                 var info = data.trails
                 for (var x = 0; x < info.length; x++)
                 {
+                  var backslashes = data.trails[x].imgSqSmall
+                  var imgURL = backslashes.replace("\\", "");
 
+                  var myLatLng = {lat: data.trails[x].latitude, lng: data.trails[x].longitude}
+                  markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    title: place.name,
+                    position: myLatLng,
+                    icon: data.trails[x].imgSqSmall
+                  })),
                   $("#hikingresults").append(data.trails[x].id)
                   $("#hikingresults").append(data.trails[x].name)
                   $("#hikingresults").append(data.trails[x].type)
@@ -109,6 +120,7 @@
             }
 
             apiGetAll();
+            
             
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
