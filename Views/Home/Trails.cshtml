@@ -31,7 +31,7 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 41.886008, lng: -87.6235219},
           zoom: 13,
-          mapTypeId: 'satellite'
+          mapTypeId: 'roadmap'
         });
 
         // Create the search box and link it to the UI element.
@@ -74,7 +74,7 @@
               size: new google.maps.Size(71, 71),
               origin: new google.maps.Point(0, 0),
               anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
+              scaledSize: new google.maps.Size(50, 50)
             };
 
             markers.push(new google.maps.Marker({
@@ -93,6 +93,7 @@
               try {
                 var resp = await fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&key=HIKING_PROJECT_API')
                 var data = await resp.json();
+                $("#hikingresults").html("");
                 var info = data.trails
                 for (var x = 0; x < info.length; x++)
                 {
@@ -135,7 +136,7 @@
 
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_API
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFbGNmXKLwZV6NqhluyzrGQT99zeUCg6w
 &libraries=places&callback=initAutocomplete" async defer>
     </script>
     
