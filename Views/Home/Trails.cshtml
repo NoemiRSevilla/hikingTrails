@@ -5,7 +5,7 @@
 <body>
     <input id="pac-input" class="controls form-control col-6" type="text" placeholder="Search Box">
     <div id="map" ></div>
-    <div id="hikingresults" >
+    <div id="hikingresults" class="container overflow-auto pad">
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js">
@@ -91,7 +91,7 @@
             
             async function apiGetAll () {
               try {
-                var resp = await fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&key=HIKING_PROJECT_API')
+                var resp = await fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&key=200600399-a9a827ab2b79c5ff46c5d9c3ff28936b')
                 var data = await resp.json();
                 $("#hikingresults").html("");
                 var info = data.trails
@@ -99,6 +99,12 @@
                 {
                   var backslashes = data.trails[x].imgSqSmall
                   var imgURL = backslashes.replace("\\", "");
+
+                  var smMedBackslash = data.trails[x].imgSmallMed
+                  var smMedURL = smMedBackslash.replace("\\", "");
+
+                  var showPageSlash = data.trails[x].url
+                  var showPageURL = showPageSlash.replace("\\", "");
 
                   var myLatLng = {lat: data.trails[x].latitude, lng: data.trails[x].longitude}
                   markers.push(new google.maps.Marker({
@@ -108,10 +114,42 @@
                     position: myLatLng,
                     icon: data.trails[x].imgSqSmall
                   })),
-                  $("#hikingresults").append(data.trails[x].id)
-                  $("#hikingresults").append(data.trails[x].name)
-                  $("#hikingresults").append(data.trails[x].type)
-                  $("#hikingresults").append(data.trails[x].summary)
+                  $("#hikingresults").append(
+                    '<div class="card-group">'
+                  )
+                    $("#hikingresults").append(
+                    '<div class="card-group">'
+                    )
+                      $("#hikingresults").append(
+                        '<img src="' + smMedURL + '" class="card-img-top" alt="' + place.name + '" height="140px" width="400px">'
+                      )
+                      $("#hikingresults").append(
+                        '<div class="card-body>'
+                      )
+                        $("#hikingresults").append(
+                          '<h5 class="card-title"><a href="' + showPageURL + '">' + data.trails[x].name + '</a></h5>'
+                        )
+                        $("#hikingresults").append(
+                          '<p class="card-text">' + data.trails[x].summary + '</p>'
+                        )
+                      $("#hikingresults").append(
+                        '</div>'
+                      )
+                      $("#hikingresults").append(
+                        '<div class="card-footer">'
+                      )
+                        $("#hikingresults").append(
+                          '<ul><small class="text-muted">•' + data.trails[x].length + ' mi • ' + data.trails[x].type + ' • '+ data.trails[x].ascent +' ft Ascent</small><ul>'
+                        )
+                      $("#hikingresults").append(
+                        '</div>'
+                      )
+                    $("#hikingresults").append(
+                    '</div>'
+                    )
+                  $("#hikingresults").append(
+                    '</div>'
+                  )
                 }
                   return info;
               }
@@ -119,7 +157,6 @@
                 console.log(error);
               }
             }
-
             apiGetAll();
             
             
@@ -140,8 +177,6 @@
 &libraries=places&callback=initAutocomplete" async defer>
     </script>
     
-
-
     <script src="~/js/script.js">
     </script>
 </body>
