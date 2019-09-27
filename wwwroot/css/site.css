@@ -47,7 +47,7 @@
 }
 
 #map {
-    height: 100%;
+    height: 90%;
     width: 65%;
     display: inline-block
 }
@@ -130,7 +130,7 @@ html, body {
 
 #hikingresults {
     width: 30%;
-    height: 100%;
+    height: 90%;
     color: black;
     display: inline-block;
 }
@@ -257,4 +257,9 @@ html, body {
 {
     margin-left: 37%;
 
+}
+
+.middle
+{
+    margin-left: 40%;
 }

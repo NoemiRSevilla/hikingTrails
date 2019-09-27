@@ -101,7 +101,7 @@ namespace HomeController.Controllers
                     return View("Index");
                 }
                 HttpContext.Session.SetString("Email", retrievedUser.LoginEmail);
-                return RedirectToAction("Home");
+                return RedirectToAction("Trails");
             }
             else
             {
