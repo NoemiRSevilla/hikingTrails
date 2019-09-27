@@ -2961,6 +2961,11 @@
   "RootNamespace": "hiking",
   "Documents": [
     {
+      "FilePath": "Views/Home/FavoriteHikes.cshtml",
+      "TargetPath": "Views/Home/FavoriteHikes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Home/Trails.cshtml",
       "TargetPath": "Views/Home/Trails.cshtml",
       "FileKind": "mvc"

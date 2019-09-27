@@ -52,3 +52,4 @@
 /Users/IrockMyWarlock/Desktop/codingdojo/c#/hiking/hiking-workingModel/obj/Debug/netcoreapp2.2/hiking.dll
 /Users/IrockMyWarlock/Desktop/codingdojo/c#/hiking/hiking-workingModel/obj/Debug/netcoreapp2.2/hiking.pdb
 /Users/IrockMyWarlock/Desktop/codingdojo/c#/hiking/hiking-workingModel/obj/Debug/netcoreapp2.2/hiking.csproj.CopyComplete
+/Users/IrockMyWarlock/Desktop/codingdojo/c#/hiking/hiking-workingModel/obj/Debug/netcoreapp2.2/Razor/Views/Home/FavoriteHikes.g.cshtml.cs

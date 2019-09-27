@@ -124,9 +124,21 @@ namespace HomeController.Controllers
             return View();
         }
         [HttpPost("range")]
-        public IActionResult Range(Trail trailMax)
+        public IActionResult Range()
         {
             return RedirectToAction("Trails");
+        }
+        
+        [HttpPost("add")]
+        public IActionResult Add(Trail newTrail)
+        {
+            return RedirectToAction ("Trails");
+        }
+
+        [HttpGet("favorites")]
+        public IActionResult FavoriteHikes()
+        {
+            return View();
         }
     }
 }
