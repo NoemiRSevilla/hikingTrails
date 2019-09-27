@@ -9,8 +9,8 @@ using hiking.Models;
 namespace hiking.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20190924171031_KwakMigration")]
-    partial class KwakMigration
+    [Migration("20190927174401_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,6 +18,34 @@ namespace hiking.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("hiking.Models.Favorite", b =>
+                {
+                    b.Property<int>("FavoriteId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("id");
+
+                    b.HasKey("FavoriteId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("id");
+
+                    b.ToTable("favorites");
+                });
+
+            modelBuilder.Entity("hiking.Models.Trail", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("id");
+
+                    b.ToTable("Trail");
+                });
 
             modelBuilder.Entity("hiking.Models.User", b =>
                 {
@@ -44,7 +72,20 @@ namespace hiking.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("users");
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("hiking.Models.Favorite", b =>
+                {
+                    b.HasOne("hiking.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("hiking.Models.Trail", "myTrails")
+                        .WithMany()
+                        .HasForeignKey("id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

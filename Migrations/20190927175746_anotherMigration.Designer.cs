@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hiking.Models;
 
 namespace hiking.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20190927175746_anotherMigration")]
+    partial class anotherMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +83,7 @@ namespace hiking.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("hiking.Models.Trail", "myTrails")
-                        .WithMany("ownerOfFaves")
+                        .WithMany()
                         .HasForeignKey("id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

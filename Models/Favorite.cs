@@ -6,10 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace hiking.Models
 {
 
-    public class Trail
+    public class Favorite
     {
         [Key]
+        public int FavoriteId {get;set;}
         public int id {get;set;}
-        public List<Favorite> ownerOfFaves { get; set; }
+        public int UserId {get;set;}
+        public Trail myTrails {get;set;}
+        public User Owner {get;set;}
     }
 }

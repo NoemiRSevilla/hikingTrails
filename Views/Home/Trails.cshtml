@@ -1,5 +1,3 @@
-@using hiking
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +31,10 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <h1 class="white">Welcome to <span class="red">TRAILGUIDES</span>!</h1>
+    <a href="/logout" class="also">Logout</a>
+</nav>
   <form action="/range">
     Max Distance: <input type="range" name="distance" min="0" max="40">
     <input type="submit">
@@ -121,7 +123,7 @@
 
           async function apiGetAll() {
             try {
-              var resp = await fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&key=HIKING_PROJECT_API')
+              var resp = await fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&key=200600399-a9a827ab2b79c5ff46c5d9c3ff28936b')
               var data = await resp.json();
               $("#hikingresults").html("");
               var info = data.trails
@@ -146,9 +148,6 @@
                 $("#hikingresults").append(
                   '<div class="card-group border">'
                 )
-                  $("#hikingresults").append(
-                    '<span href="" class="favme dashicons dashicons-heart"></span>'
-                  )
                 $("#hikingresults").append(
                   '<img src="' + smMedURL + '" class="card-img-top" alt="' + place.name + '">'
                 )
@@ -219,7 +218,7 @@
 
 
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_API&libraries=places&callback=initAutocomplete"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFbGNmXKLwZV6NqhluyzrGQT99zeUCg6w&libraries=places&callback=initAutocomplete"
     async defer></script>
 
   <script src="~/js/script.js"></script>

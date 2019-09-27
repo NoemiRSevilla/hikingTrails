@@ -33,7 +33,7 @@ namespace HomeController.Controllers
             string UserInSession = HttpContext.Session.GetString("Email");
             if (UserInSession != null)
             {
-                return RedirectToAction("Home");
+                return RedirectToAction("Trails");
             }
             else
             {
@@ -61,7 +61,7 @@ namespace HomeController.Controllers
                     dbContext.Add(newUser);
                     dbContext.SaveChanges();
                     HttpContext.Session.SetString("Email", newUser.Email);
-                    return RedirectToAction($"Home");
+                    return RedirectToAction($"Trails");
                 }
             }
             else
@@ -118,27 +118,52 @@ namespace HomeController.Controllers
         [HttpGet("trails")]
         public IActionResult Trails()
         {
-
+            string UserInSession = HttpContext.Session.GetString("Email");
             //always need to use YOUR_API_KEY for requests.  Do this in App_Start.
-            
-            return View();
+            if (UserInSession != null)
+            {
+                User retrievedUser = dbContext.users.FirstOrDefault(c => c.Email == UserInSession);
+                ViewBag.User = retrievedUser;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Logout");
+            }
         }
         [HttpPost("range")]
         public IActionResult Range()
         {
             return RedirectToAction("Trails");
         }
-        
+
         [HttpPost("add")]
-        public IActionResult Add(Trail newTrail)
+        public IActionResult Add(Trail likedTrail, int UserId, int id)
         {
-            return RedirectToAction ("Trails");
+            Favorite newFavorite = new Favorite();
+            newFavorite.UserId = UserId;
+            newFavorite.id = id;
+            dbContext.favorites.Add(newFavorite);
+            dbContext.SaveChanges();
+            return Redirect ("Trails");
         }
 
-        [HttpGet("favorites")]
+        [HttpGet("favorites/{UserId}")]
         public IActionResult FavoriteHikes()
         {
-            return View();
+            string UserInSession = HttpContext.Session.GetString("Email");
+            if (UserInSession != null)
+            {
+                User UserFaves = dbContext.users
+                .Include (mid => mid.faveHikes)
+                .ThenInclude(t => t.myTrails)
+                .FirstOrDefault(u => u.Email == UserInSession);
+                return View(UserFaves);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }
