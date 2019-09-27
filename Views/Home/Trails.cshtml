@@ -14,6 +14,22 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="//s.w.org/wp-includes/css/dashicons.css?20150710" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script>
+    // Favorite Button - Heart
+    $('.favme').click(function () {
+      $(this).toggleClass('active');
+    });
+
+    /* when a user clicks, toggle the 'is-animating' class */
+    $(".favme").on('click touchstart', function () {
+      $(this).toggleClass('is_animating');
+    });
+
+    /*when the animation is over, remove the class*/
+    $(".favme").on('animationend', function () {
+      $(this).toggleClass('is_animating');
+    });
+  </script>
 </head>
 
 <body>
@@ -32,22 +48,7 @@
   </script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
     integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-  <script>
-    // Favorite Button - Heart
-    $('.favme').click(function () {
-      $(this).toggleClass('active');
-    });
 
-    /* when a user clicks, toggle the 'is-animating' class */
-    $(".favme").on('click touchstart', function () {
-      $(this).toggleClass('is_animating');
-    });
-
-    /*when the animation is over, remove the class*/
-    $(".favme").on('animationend', function () {
-      $(this).toggleClass('is_animating');
-    });
-  </script>
 
   <script>
     // This example adds a search box to a map, using the Google Place Autocomplete
